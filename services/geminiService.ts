@@ -69,9 +69,11 @@ export async function generateVisualsForLyrics(
 
   let generatedPrompts: {stanza: string; prompt: string}[];
   try {
-    generatedPrompts = JSON.parse(promptResponse.text);
+    // FIX: Trim potential markdown code fences from the JSON response before parsing.
+    const jsonText = promptResponse.text.replace(/^```json\n/, '').replace(/\n```$/, '');
+    generatedPrompts = JSON.parse(jsonText);
   } catch (e) {
-    console.error("Failed to parse prompts JSON:", promptResponse.text);
+    console.error("Failed to parse prompts JSON:", promptResponse.text, e);
     throw new Error("AI failed to generate prompts in the correct format.");
   }
   

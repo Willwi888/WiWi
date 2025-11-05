@@ -294,6 +294,22 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ timedLyrics, audioUrl, imageU
               />
               <span className="text-white text-sm font-mono">{formatTime(duration)}</span>
             </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-white text-sm items-center">
+                <div className="flex items-center gap-3">
+                    <label htmlFor="art-size-slider" className="font-semibold text-cyan-300 whitespace-nowrap">封面大小</label>
+                    <input
+                      id="art-size-slider"
+                      type="range"
+                      min="20"
+                      max="70"
+                      value={artSize}
+                      onChange={(e) => setArtSize(Number(e.target.value))}
+                      className="w-full h-1.5 bg-cyan-900/50 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                    />
+                    <span className="font-mono w-12 text-center text-cyan-400">{artSize}%</span>
+                </div>
+            </div>
             
             <div className="flex items-center justify-between flex-wrap gap-4">
                 <button onClick={onBack} className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm sm:text-base">
