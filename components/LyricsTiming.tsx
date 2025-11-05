@@ -165,30 +165,30 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
       <div className="flex-grow flex flex-col lg:flex-row gap-8 items-start overflow-hidden">
         {/* Left Column: Album Art & Hotkeys */}
         <div className="w-full lg:w-1/3 flex-shrink-0 lg:sticky lg:top-0">
-          <h3 className="text-xl font-bold text-purple-300 mb-4 text-center">專輯封面</h3>
-          <img src={backgroundImageUrl} alt="專輯封面" className="w-full aspect-square object-cover rounded-lg shadow-2xl ring-1 ring-white/10" />
-          <div className="mt-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
-             <h4 className="font-semibold text-purple-300 mb-2">快捷鍵</h4>
+          <h3 className="text-xl font-bold text-cyan-300 mb-4 text-center">專輯封面</h3>
+          <img src={backgroundImageUrl} alt="專輯封面" className="w-full aspect-square object-cover rounded-lg shadow-2xl ring-1 ring-cyan-500/30" />
+          <div className="mt-4 p-4 bg-black/50 rounded-lg border border-cyan-700/50">
+             <h4 className="font-semibold text-cyan-300 mb-2">快捷鍵</h4>
              <div className="text-sm text-left grid grid-cols-2 gap-x-4 gap-y-2 text-gray-300">
-                <div className="font-mono"><kbd className="font-sans px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">↑</kbd> / <kbd className="font-sans px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">↓</kbd></div>
+                <div className="font-mono"><kbd className="font-sans px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-300 border border-gray-400 rounded-lg">↑</kbd> / <kbd className="font-sans px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-300 border border-gray-400 rounded-lg">↓</kbd></div>
                 <div className="text-gray-400">選擇上/下一句</div>
-                <div className="font-mono"><kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd></div>
+                <div className="font-mono"><kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-300 border border-gray-400 rounded-lg">Enter</kbd></div>
                 <div className="text-gray-400">設定時間戳</div>
-                <div className="font-mono"><kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">空格鍵</kbd></div>
+                <div className="font-mono"><kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-300 border border-gray-400 rounded-lg">空格鍵</kbd></div>
                 <div className="text-gray-400">播放 / 暫停</div>
               </div>
           </div>
         </div>
 
         {/* Right Column: Lyrics Table */}
-        <div className="w-full lg:w-2/3 h-full overflow-y-auto custom-scrollbar bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700">
+        <div className="w-full lg:w-2/3 h-full overflow-y-auto custom-scrollbar bg-black/50 backdrop-blur-sm rounded-lg border border-cyan-700/50">
           <table className="w-full text-left text-gray-200">
-            <thead className="sticky top-0 bg-gray-800 z-10">
-              <tr className="border-b border-gray-600">
-                <th colSpan={2} className="p-4 text-center text-purple-300 font-semibold">時間</th>
-                <th rowSpan={2} className="p-4 align-bottom text-purple-300 font-semibold">歌詞</th>
+            <thead className="sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10">
+              <tr className="border-b border-cyan-800">
+                <th colSpan={2} className="p-4 text-center text-cyan-300 font-semibold">時間</th>
+                <th rowSpan={2} className="p-4 align-bottom text-cyan-300 font-semibold">歌詞</th>
               </tr>
-              <tr className="border-b border-gray-600">
+              <tr className="border-b border-cyan-800">
                 <th className="py-2 px-3 text-center font-normal text-sm text-gray-400">開始</th>
                 <th className="py-2 px-3 text-center font-normal text-sm text-gray-400">結束</th>
               </tr>
@@ -210,13 +210,13 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
                 const isLineActive = activeLineIndex === index;
                 const isLinePlaying = playingLineIndex === index;
 
-                let rowClassName = 'border-b border-gray-700/50 transition-colors cursor-pointer';
+                let rowClassName = 'border-b border-cyan-900/50 transition-colors cursor-pointer';
                 if (isLineActive) {
-                  rowClassName += ' bg-purple-900/50';
+                  rowClassName += ' bg-cyan-500/20';
                 } else if (isLinePlaying) {
-                  rowClassName += ' bg-purple-800/40';
+                  rowClassName += ' bg-cyan-500/10';
                 } else {
-                  rowClassName += ' hover:bg-gray-700/30';
+                  rowClassName += ' hover:bg-cyan-800/20';
                 }
 
                 return (
@@ -228,7 +228,7 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
                   >
                     <td className="p-3 text-center w-28 font-mono">
                       <div className="flex items-center justify-center gap-2">
-                        <span>{timestamps[index] !== null ? `${timestamps[index]!.toFixed(2)}s` : '---'}</span>
+                        <span className="text-cyan-300">{timestamps[index] !== null ? `${timestamps[index]!.toFixed(2)}s` : '---'}</span>
                         {timestamps[index] !== null && (
                           <button
                             onClick={(e) => { e.stopPropagation(); handleResetTimestamp(index); }}
@@ -248,7 +248,7 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
                         contentEditable={true}
                         suppressContentEditableWarning={true}
                         onBlur={(e) => handleLyricChange(index, e.currentTarget.textContent || '')}
-                        className="focus:outline-none focus:bg-gray-600/50 rounded px-2 -mx-2 cursor-text min-h-[1.5rem]"
+                        className="focus:outline-none focus:bg-cyan-900/50 rounded px-2 -mx-2 cursor-text min-h-[1.5rem]"
                       >
                         {line}
                       </p>
@@ -262,7 +262,7 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
       </div>
       
       {/* Bottom Controls */}
-      <div className="flex-shrink-0 mt-4 bg-gray-800 rounded-lg p-4 space-y-3 border border-gray-700">
+      <div className="flex-shrink-0 mt-4 bg-black/70 backdrop-blur-sm rounded-lg p-4 space-y-3 border border-cyan-700/50">
         <audio 
           ref={audioRef} 
           src={audioUrl} 
@@ -279,27 +279,27 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
               step="0.01"
               value={currentTime}
               onChange={handleTimelineChange}
-              className="w-full h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer accent-pink-500"
+              className="w-full h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer accent-cyan-400"
           />
           <span className="text-sm text-gray-400 font-mono w-12 text-center">{formatTime(duration)}</span>
         </div>
         <div className="flex items-center justify-between">
           <button 
               onClick={onBack} 
-              className="px-6 py-2 text-gray-300 font-semibold bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+              className="px-6 py-2 text-gray-300 font-semibold bg-gray-700/50 border border-gray-600 hover:bg-gray-600/50 rounded-lg transition-colors"
           >
               返回
           </button>
           <button 
               onClick={handlePlayPause} 
-              className="bg-white text-gray-900 rounded-full p-3 transform hover:scale-110 transition-transform"
+              className="bg-white text-gray-900 rounded-full p-3 transform hover:scale-110 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.4)]"
           >
               {isPlaying ? <PauseIcon className="w-6 h-6" /> : <PlayIcon className="w-6 h-6" />}
           </button>
           <button 
               onClick={handleComplete}
               disabled={!isCompleteEnabled}
-              className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_10px_rgba(0,220,255,0.6)]"
           >
               完成並預覽
           </button>
@@ -308,7 +308,7 @@ const LyricsTiming: React.FC<LyricsTimingProps> = ({ lyricsText, audioUrl, backg
       <style>{`
         .custom-scrollbar::-webkit-scrollbar { width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #805ad5; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #0891b2; border-radius: 4px; }
       `}</style>
     </div>
   );
